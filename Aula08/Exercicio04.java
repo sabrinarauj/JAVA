@@ -8,21 +8,29 @@ public class Exercicio04 {
             String numeroTelefone = "";
 
             System.out.println("--- Validador de telefone (celular e fixo) ---");
-
             System.out.println("Digite o telefone que deseja validar: ");
             numeroTelefone = scanner.nextLine();
 
-            if (numeroTelefone.length() < 9) {
-                throw new ArithmeticException("O telefone deve ter 9 dígitos");
+            if (numeroTelefone.matches("^\\d{2}+\\d{5}+-{4}$")) {
+                System.out.println("Telefone válido!");
             }
-            if (numeroTelefone.contains("--")) {
-                throw new NumberFormatException("Telefone inválido");
+            else if (numeroTelefone.substring(0,2).contains(")")) {
+                throw new NumberFormatException("Formato de telefone inválido");
             }
-            if (numeroTelefone.contains("))")) {
-                throw new NumberFormatException("Telefone inválido");
+            else if (numeroTelefone.length() < 9 || numeroTelefone.isBlank()) {
+                throw new NumberFormatException("Formato de telefone inválido");
             }
-            System.out.println("Telefone válido: " + numeroTelefone);
+            else if (numeroTelefone.contains("--")) {
+                throw new NumberFormatException("Formato de telefone inválido");
+            }
+            else if (numeroTelefone.contains("))")) {
+                throw new NumberFormatException("Formato de telefone inválido");
+            }
+            else if (numeroTelefone.matches("^\\s")) {
+               throw new NumberFormatException("Formato de telefone inválido");
+            }
+            else {
+                System.out.println("Telefone válido: " + numeroTelefone);
+            }
     }
 }
-//01234567891123
-//(19)98812-7198
